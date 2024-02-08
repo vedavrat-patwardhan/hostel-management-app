@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 
 const FlexBetween = ({ children, ...props }) => (
   <Box
@@ -12,3 +13,7 @@ const FlexBetween = ({ children, ...props }) => (
 );
 
 export default FlexBetween;
+
+FlexBetween.propTypes = {
+  children: PropTypes.node.isRequired,
+};

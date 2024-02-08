@@ -4,7 +4,7 @@ import { H3 } from 'components/Typography'; // Local CUSTOM COMPONENT
 import { Container } from '@mui/material';
 import BedBookingForm from './bed-booking-form';
 
-function BedBookingPageView() {
+const BedBookingPageView = () => {
   const INITIAL_VALUES = {
     name: '',
     age: 0,
@@ -35,6 +35,6 @@ function BedBookingPageView() {
       />
     </Container>
   );
-}
+};
 
 export default BedBookingPageView;

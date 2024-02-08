@@ -52,7 +52,7 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-function Header() {
+const Header = () => {
   const [open, setOpen] = useState(false);
   const downSM = useMediaQuery(theme => theme.breakpoints.down('sm'));
   const router = useRouter();
@@ -190,6 +190,6 @@ function Header() {
       </div>
     </HeaderWrapper>
   );
-}
+};
 
 export default Header;

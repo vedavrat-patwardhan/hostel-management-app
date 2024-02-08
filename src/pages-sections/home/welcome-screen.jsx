@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import { Link as Scroll } from 'react-scroll';
 import { H1, Span } from 'components/Typography';
 import { FlexBox } from 'components/flex-box';
-import Header from 'pages-sections/common/header';
+import Header from 'components/header';
 
 function WelcomeScreen() {
   return (

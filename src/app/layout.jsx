@@ -13,20 +13,18 @@ export const openSans = Open_Sans({
   subsets: ['latin'],
 }); // IMPORT DUMMY SERVER
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={openSans.className}>
-        <SettingsProvider>
-          <ThemeProvider>
-            <ProgressBar />
-            <RTL>{children}</RTL>
-          </ThemeProvider>
-        </SettingsProvider>
-      </body>
-    </html>
-  );
-}
+export const RootLayout = ({ children }) => (
+  <html lang="en" suppressHydrationWarning>
+    <body className={openSans.className}>
+      <SettingsProvider>
+        <ThemeProvider>
+          <ProgressBar />
+          <RTL>{children}</RTL>
+        </ThemeProvider>
+      </SettingsProvider>
+    </body>
+  </html>
+);
 
 RootLayout.propTypes = {
   children: PropTypes.node.isRequired,

@@ -1,6 +1,7 @@
 import { alpha, styled } from '@mui/material/styles';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css'; // STYLED COMPONENT
+import PropTypes from 'prop-types';
 
 const StyledScrollBar = styled(SimpleBar)(({ theme }) => ({
   maxHeight: '100%',
@@ -31,3 +32,14 @@ const Scrollbar = ({ children, autoHide = true, sx, ...props }) => (
 );
 
 export default Scrollbar;
+
+Scrollbar.propTypes = {
+  children: PropTypes.node.isRequired,
+  autoHide: PropTypes.bool,
+  sx: PropTypes.shape({}),
+};
+
+Scrollbar.defaultProps = {
+  autoHide: true,
+  sx: {},
+};

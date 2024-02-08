@@ -8,7 +8,7 @@ import { H1 } from 'components/Typography';
 import { FlexRowCenter } from 'components/flex-box'; // ==============================================================
 
 // ==============================================================
-export default function Error({ error, reset }) {
+const Error = ({ error, reset }) => {
   console.log(error, error.message);
   return (
     <FlexRowCenter height="100vh">
@@ -26,7 +26,9 @@ export default function Error({ error, reset }) {
       </Card>
     </FlexRowCenter>
   );
-}
+};
+
+export default Error;
 
 Error.propTypes = {
   error: PropTypes.instanceOf(Object).isRequired,

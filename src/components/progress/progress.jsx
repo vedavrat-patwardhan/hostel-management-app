@@ -1,4 +1,3 @@
-// https://github.com/apal21/nextjs-progressbar/issues/86
 'use client';
 
 import { useEffect } from 'react';
@@ -16,7 +15,7 @@ const ProgressBar = () => {
 
     const handleAnchorClick = event => {
       const targetUrl = event.currentTarget.href;
-      const currentUrl = location.href;
+      const currentUrl = window.location.href;
 
       if (targetUrl !== currentUrl) {
         NProgress.start();

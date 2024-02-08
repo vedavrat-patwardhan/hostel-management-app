@@ -6,6 +6,7 @@ import { CacheProvider } from '@emotion/react';
 import stylisRTLPlugin from 'stylis-plugin-rtl';
 import { prefixer } from 'stylis';
 import useSettings from 'hooks/useSettings';
+import PropTypes from 'prop-types';
 
 const RTL = ({ children }) => {
   const { settings } = useSettings();
@@ -22,7 +23,11 @@ const RTL = ({ children }) => {
     return <CacheProvider value={cacheRtl}>{children}</CacheProvider>;
   }
 
-  return <>{children}</>;
+  return <div>{children}</div>;
 };
 
 export default RTL;
+
+RTL.propTypes = {
+  children: PropTypes.node.isRequired,
+};

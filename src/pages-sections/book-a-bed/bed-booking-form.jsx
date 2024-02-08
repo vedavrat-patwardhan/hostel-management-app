@@ -39,7 +39,7 @@ const VALIDATION_SCHEMA = yup.object().shape({
     .required('Validation document number is required'),
 });
 
-function BedBookingForm(props) {
+const BedBookingForm = props => {
   const { initialValues, handleFormSubmit } = props;
 
   return (
@@ -292,7 +292,7 @@ function BedBookingForm(props) {
       </Formik>
     </Card>
   );
-}
+};
 
 export default BedBookingForm;
 

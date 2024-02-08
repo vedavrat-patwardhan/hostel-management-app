@@ -14,6 +14,5 @@ export const metadata = {
   viewport: 'width=device-width, initial-scale=1',
   keywords,
 };
-export default function ProductCreate() {
-  return <BookABed />;
-}
+
+export const BookABedIndex = () => <BookABed />;
