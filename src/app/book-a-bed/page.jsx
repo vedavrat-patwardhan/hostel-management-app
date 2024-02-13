@@ -16,4 +16,5 @@ export const metadata = {
 };
 
 const BookABedIndex = () => <BookABed />;
+
 export default BookABedIndex;
