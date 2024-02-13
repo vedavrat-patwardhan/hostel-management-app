@@ -29,7 +29,7 @@ const StyledTableRow = styled(TableRow)({
   },
 });
 
-function DataListTable({ dataList, tableHeading }) {
+const DataListTable = ({ dataList, tableHeading }) => {
   const { order, orderBy, handleRequestSort } = useMuiTable({
     listData: dataList,
   });
@@ -77,7 +77,7 @@ function DataListTable({ dataList, tableHeading }) {
       </TableContainer>
     </Scrollbar>
   );
-}
+};
 
 export default DataListTable;
 

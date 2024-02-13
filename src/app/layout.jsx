@@ -13,7 +13,7 @@ export const openSans = Open_Sans({
   subsets: ['latin'],
 }); // IMPORT DUMMY SERVER
 
-export const RootLayout = ({ children }) => (
+const RootLayout = ({ children }) => (
   <html lang="en" suppressHydrationWarning>
     <body className={openSans.className}>
       <SettingsProvider>
@@ -29,3 +29,5 @@ export const RootLayout = ({ children }) => (
 RootLayout.propTypes = {
   children: PropTypes.node.isRequired,
 };
+
+export default RootLayout;

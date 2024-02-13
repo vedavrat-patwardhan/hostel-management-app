@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import { H2 } from 'components/Typography';
 import DataListTable from './components/table';
 
-function AvailabilityTable() {
+const AvailabilityTable = () => {
   const dummyData = [
     {
       floorNo: 1,
@@ -94,7 +94,7 @@ function AvailabilityTable() {
       </Container>
     </Box>
   );
-}
+};
 
 export default AvailabilityTable;
 

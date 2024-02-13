@@ -15,4 +15,6 @@ export const metadata = {
   keywords,
 };
 
-export const IndexPage = () => <IndexPageView />;
+const IndexPage = () => <IndexPageView />;
+
+export default IndexPage;

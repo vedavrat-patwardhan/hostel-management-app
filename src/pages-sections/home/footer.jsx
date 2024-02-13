@@ -21,56 +21,54 @@ const iconList = [
     url: 'https://www.instagram.com/logicsystemsnashik/',
   },
 ];
-function Footer() {
-  return (
-    <Container
-      sx={{
-        py: '4rem',
-      }}
-    >
-      <FlexBox justifyContent="space-between" flexWrap="wrap">
-        <FlexBox className="flex" alignItems="center">
-          Developed with{' '}
-          <Favorite
-            fontSize="small"
-            color="primary"
-            sx={{
-              mx: '0.5rem',
-              fontSize: '16px',
-            }}
-          />{' '}
-          & Care by &nbsp;{' '}
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/vedavrat/"
-            rel="noreferrer"
-          >
-            Logic Systems
-          </a>
-        </FlexBox>
-
-        <FlexBox className="flex">
-          {iconList.map((item, ind) => (
-            <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>
-              <span aria-label={`icon-${ind}`}>
-                <item.icon
-                  color="inherit"
-                  sx={{
-                    mx: '0.5rem',
-                    fontSize: '1.25rem',
-                    transition: '0.2s ease-in-out',
-                    '&:hover': {
-                      color: 'primary.main',
-                    },
-                  }}
-                />
-              </span>
-            </a>
-          ))}
-        </FlexBox>
+const Footer = () => (
+  <Container
+    sx={{
+      py: '4rem',
+    }}
+  >
+    <FlexBox justifyContent="space-between" flexWrap="wrap">
+      <FlexBox className="flex" alignItems="center">
+        Developed with{' '}
+        <Favorite
+          fontSize="small"
+          color="primary"
+          sx={{
+            mx: '0.5rem',
+            fontSize: '16px',
+          }}
+        />{' '}
+        & Care by &nbsp;{' '}
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/vedavrat/"
+          rel="noreferrer"
+        >
+          Logic Systems
+        </a>
       </FlexBox>
-    </Container>
-  );
-}
+
+      <FlexBox className="flex">
+        {iconList.map((item, ind) => (
+          <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>
+            <span aria-label={`icon-${ind}`}>
+              <item.icon
+                color="inherit"
+                sx={{
+                  mx: '0.5rem',
+                  fontSize: '1.25rem',
+                  transition: '0.2s ease-in-out',
+                  '&:hover': {
+                    color: 'primary.main',
+                  },
+                }}
+              />
+            </span>
+          </a>
+        ))}
+      </FlexBox>
+    </FlexBox>
+  </Container>
+);
 
 export default Footer;

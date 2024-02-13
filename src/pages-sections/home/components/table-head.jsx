@@ -16,19 +16,17 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-function IconComponent() {
-  return (
-    <UpDown
-      sx={{
-        fontSize: 14,
-        ml: 1,
-        color: 'grey.600',
-      }}
-    />
-  );
-}
+const IconComponent = () => (
+  <UpDown
+    sx={{
+      fontSize: 14,
+      ml: 1,
+      color: 'grey.600',
+    }}
+  />
+);
 
-function TableHeader(props) {
+const TableHeader = props => {
   const { heading, orderBy, order, onRequestSort } = props;
   return (
     <TableHead
@@ -61,7 +59,7 @@ function TableHeader(props) {
       </TableRow>
     </TableHead>
   );
-}
+};
 
 export default TableHeader;
 
