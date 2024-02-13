@@ -7,7 +7,7 @@ import { H1, Span } from 'components/Typography';
 import { FlexBox } from 'components/flex-box';
 import Header from 'components/header';
 
-function WelcomeScreen() {
+const WelcomeScreen = () => {
   return (
     <div>
       <Header />
@@ -43,6 +43,6 @@ function WelcomeScreen() {
       </Container>
     </div>
   );
-}
+};
 
 export default WelcomeScreen;

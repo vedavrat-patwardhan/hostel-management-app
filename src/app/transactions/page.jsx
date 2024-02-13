@@ -1,10 +1,10 @@
 import React from 'react';
 import { keywords } from 'utils/constants';
-import BookABed from 'pages-sections/book-a-bed';
+import Addtransaction from '../../pages-sections/transactions';
 
 export const metadata = {
-  title: 'Book a Bed',
-  description: `Form to book a bed in the hostel.`,
+  title: 'Transaction Details',
+  description: `Form to add transactions in hostel.`,
   authors: [
     {
       name: 'Vedavrat Patwardhan',
@@ -15,5 +15,5 @@ export const metadata = {
   keywords,
 };
 
-const BookABedIndex = () => <BookABed />;
-export default BookABedIndex;
+const IndexPage = () => <Addtransaction />;
+export default IndexPage;

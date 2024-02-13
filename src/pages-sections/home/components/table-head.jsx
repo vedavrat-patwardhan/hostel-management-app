@@ -16,7 +16,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-function IconComponent() {
+const IconComponent = () => {
   return (
     <UpDown
       sx={{
@@ -26,9 +26,9 @@ function IconComponent() {
       }}
     />
   );
-}
+};
 
-function TableHeader(props) {
+const TableHeader = props => {
   const { heading, orderBy, order, onRequestSort } = props;
   return (
     <TableHead
@@ -61,7 +61,7 @@ function TableHeader(props) {
       </TableRow>
     </TableHead>
   );
-}
+};
 
 export default TableHeader;
 

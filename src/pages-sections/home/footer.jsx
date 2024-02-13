@@ -21,7 +21,7 @@ const iconList = [
     url: 'https://www.instagram.com/logicsystemsnashik/',
   },
 ];
-function Footer() {
+const Footer = () => {
   return (
     <Container
       sx={{
@@ -71,6 +71,6 @@ function Footer() {
       </FlexBox>
     </Container>
   );
-}
+};
 
 export default Footer;

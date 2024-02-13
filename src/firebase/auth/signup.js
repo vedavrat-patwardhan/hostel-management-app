@@ -3,7 +3,7 @@ import firebaseApp from '../config';
 
 const auth = getAuth(firebaseApp);
 
-export default async function signUp(email, password) {
+const signUp = async (email, password) => {
   let result = null;
   let error = null;
   try {
@@ -13,4 +13,6 @@ export default async function signUp(email, password) {
   }
 
   return { result, error };
-}
+};
+
+export default signUp;

@@ -1,5 +1,5 @@
-import IndexPageView from 'pages-sections/home';
 import React from 'react';
+import IndexPageView from 'pages-sections/home';
 import { keywords } from 'utils/constants';
 
 export const metadata = {
@@ -15,4 +15,10 @@ export const metadata = {
   keywords,
 };
 
-export const IndexPage = () => <IndexPageView />;
+const IndexPage = () => (
+  <div>
+    <IndexPageView />
+  </div>
+);
+
+export default IndexPage;
