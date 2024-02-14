@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { Box } from '@mui/material';
-import Header from '../../components/header';
+import Header from 'components/header';
 import AddTransactionView from './add-transaction';
 
 const Addtransaction = () => (

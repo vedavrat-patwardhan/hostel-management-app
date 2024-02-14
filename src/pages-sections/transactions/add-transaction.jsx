@@ -1,10 +1,16 @@
+'use client';
+
 import React from 'react';
 
 import { H3 } from 'components/Typography'; // Local CUSTOM COMPONENT
 import { Container } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import TransactionForm from './add-transaction-form';
+import { addExpense } from '../../firebase/expenses/addExpenses';
 
 const AddTransactionView = () => {
+  const router = useRouter();
+
   const INITIAL_VALUES = {
     ebill: '',
     wbill: '',
@@ -19,12 +25,13 @@ const AddTransactionView = () => {
 
   const handleFormSubmit = async values => {
     try {
-      const { expenseData, error } = await addExpense(values);
+      const data = await addExpense(values);
 
-      if (expenseData) {
-        console.log('Booking successful:', expenseData);
+      if (data.ok) {
+        console.log('Booking successful:', data);
+        router.push('/addAllotment');
       } else {
-        console.error('Booking failed:', error);
+        console.error('Booking failed:');
       }
     } catch (error) {
       console.log(error);

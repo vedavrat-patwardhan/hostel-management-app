@@ -1,19 +1,13 @@
-
-import firebaseApp from "../config";
-import { getFirestore, collection, addDoc } from "firebase/firestore"
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import firebaseApp from '../config';
 
 const firestore = getFirestore(firebaseApp);
 
-const bookbed = async (values) => {
-    let bedData = null;
-    let error = null;
+export const bookbed = async values => {
     try {
-        const docRef = await addDoc(collection(firestore, "booking"), values);
-        bedData = docRef;
+        const response = await addDoc(collection(firestore, 'booking'), values);
+        return { status: 200, data: response };
     } catch (e) {
-        error = e;
+        return { status: 404, message: e };
     }
-    return { bedData, error };
 };
-
-export default bookbed;

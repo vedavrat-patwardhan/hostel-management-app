@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -9,8 +11,8 @@ import PropTypes from 'prop-types';
 import { MenuItem } from '@mui/material';
 
 const VALIDATION_SCHEMA = yup.object().shape({
-  electricity_bill: yup.number().required('Electricity bill is required'),
-  water_bill: yup.number().required('Water bill is required'),
+  ebill: yup.number().required('Electricity bill is required'),
+  wbill: yup.number().required('Water bill is required'),
   municipal_tax: yup.number().required('Municipal tax is required'),
   bank_emi: yup.number().required('Bank emi is required'),
   salary: yup.number().required('Salary is required'),

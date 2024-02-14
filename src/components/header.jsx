@@ -94,7 +94,7 @@ const Header = () => {
                 fontWeight={currentPath.includes('transaction') ? 700 : 400}
                 onClick={() => router.push('/transaction')}
               >
-                Transaction
+                Transactions
               </Typography>
               <Typography
                 className="link"
