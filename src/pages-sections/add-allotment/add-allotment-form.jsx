@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 
 const VALIDATION_SCHEMA = yup.object().shape({
   name: yup.string().min(2).required('Name is required'),
-  bedno: yup.string().required('Bed no is required'),
-  startdate: yup.date().required('Start date is required'),
-  duedate: yup
+  bedNo: yup.string().required('Bed no is required'),
+  startDate: yup.date().required('Start date is required'),
+  dueDate: yup
     .date()
     .required('Due date is required')
     .min(yup.ref('startdate'), 'Due date must be after start date'),
   deposit: yup.number().required('Deposit is required'),
-  paymentmethod: yup.string().required('Payment method is required'),
+  paymentMethod: yup.string().required('Payment method is required'),
 });
 const AddAllotmentForm = props => {
   const { initialValues, handleFormSubmit } = props;
@@ -57,48 +57,48 @@ const AddAllotmentForm = props => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="bedno"
-                  label="bedno"
+                  name="bedNo"
+                  label="bedNo"
                   color="info"
                   size="medium"
                   placeholder="Bed No"
-                  value={values.bedno}
+                  value={values.bedNo}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.bedno && !!errors.bedno}
-                  helperText={touched.bedno && errors.bedno}
+                  error={!!touched.bedNo && !!errors.bedNo}
+                  helperText={touched.bedNo && errors.bedNo}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="startdate"
-                  label="startdate"
+                  name="startDate"
+                  label="startDate"
                   type="date"
                   color="info"
                   size="medium"
                   placeholder="Start Date"
-                  value={values.startdate}
+                  value={values.startDate}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.startdate && !!errors.startdate}
-                  helperText={touched.startdate && errors.startdate}
+                  error={!!touched.startDate && !!errors.startDate}
+                  helperText={touched.startDate && errors.startDate}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="duedate"
-                  label="duedate"
+                  name="dueDate"
+                  label="dueDate"
                   type="date"
                   color="info"
                   size="medium"
                   placeholder="Due Date"
-                  value={values.duedate}
+                  value={values.dueDate}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.duedate && !!errors.duedate}
-                  helperText={touched.duedate && errors.duedate}
+                  error={!!touched.dueDate && !!errors.dueDate}
+                  helperText={touched.dueDate && errors.dueDate}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
@@ -120,21 +120,21 @@ const AddAllotmentForm = props => {
                 <TextField
                   select
                   fullWidth
-                  name="paymentmethod"
-                  label="paymentmethod"
+                  name="paymentMethod"
+                  label="paymentMethod"
                   color="info"
                   size="medium"
                   placeholder="Payment Method"
-                  value={values.paymentmethod}
+                  value={values.paymentMethod}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.paymentmethod && !!errors.paymentmethod}
-                  helperText={touched.paymentmethod && errors.paymentmethod}
+                  error={!!touched.paymentMethod && !!errors.paymentMethod}
+                  helperText={touched.paymentMethod && errors.paymentMethod}
                 >
                   <MenuItem value="cash">Cash</MenuItem>
                   <MenuItem value="upi">UPI</MenuItem>
-                  <MenuItem value="creditcard">Credit Card</MenuItem>
-                  <MenuItem value="debitcard">Debit Card</MenuItem>
+                  <MenuItem value="creditCard">Credit Card</MenuItem>
+                  <MenuItem value="debitCard">Debit Card</MenuItem>
                 </TextField>
               </Grid>
               <Grid item sm={6} xs={12}>
@@ -155,11 +155,11 @@ export default AddAllotmentForm;
 AddAllotmentForm.propTypes = {
   initialValues: PropTypes.shape({
     name: PropTypes.string.isRequired,
-    bedno: PropTypes.string.isRequired,
-    startdate: PropTypes.instanceOf(Date).isRequired,
-    duedate: PropTypes.instanceOf(Date).isRequired,
+    bedNo: PropTypes.string.isRequired,
+    startDate: PropTypes.instanceOf(Date).isRequired,
+    dueDate: PropTypes.instanceOf(Date).isRequired,
     deposit: PropTypes.number.isRequired,
-    paymentmethod: PropTypes.string.isRequired,
+    paymentMethod: PropTypes.string.isRequired,
   }).isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
 };

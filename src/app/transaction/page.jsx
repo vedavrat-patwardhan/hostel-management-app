@@ -1,6 +1,6 @@
 import React from 'react';
 import { keywords } from 'utils/constants';
-import Addtransaction from '../../pages-sections/transactions';
+import AddTransaction from '../../pages-sections/transaction-details';
 
 export const metadata = {
   title: 'Transaction Details',
@@ -15,5 +15,5 @@ export const metadata = {
   keywords,
 };
 
-const IndexPage = () => <Addtransaction />;
+const IndexPage = () => <AddTransaction />;
 export default IndexPage;

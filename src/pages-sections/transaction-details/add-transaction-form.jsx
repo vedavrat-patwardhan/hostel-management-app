@@ -11,12 +11,12 @@ import PropTypes from 'prop-types';
 import { MenuItem } from '@mui/material';
 
 const VALIDATION_SCHEMA = yup.object().shape({
-  ebill: yup.number().required('Electricity bill is required'),
-  wbill: yup.number().required('Water bill is required'),
-  municipal_tax: yup.number().required('Municipal tax is required'),
-  bank_emi: yup.number().required('Bank emi is required'),
+  eBill: yup.number().required('Electricity bill is required'),
+  wBill: yup.number().required('Water bill is required'),
+  municipalTax: yup.number().required('Municipal tax is required'),
+  bankEmi: yup.number().required('Bank emi is required'),
   salary: yup.number().required('Salary is required'),
-  maintanance: yup.number().required('Maintanance is required'),
+  maintenance: yup.number().required('Maintenance is required'),
   laundry: yup.number().required('Laundry is required'),
   miscellaneous: yup.number().required('Miscellaneous is required'),
   remark: yup.string().required('Remark is required'),
@@ -50,64 +50,64 @@ const TransactionForm = props => {
                 <TextField
                   fullWidth
                   type="number"
-                  name="ebill"
-                  label="ebill"
+                  name="eBill"
+                  label="eBill"
                   color="info"
                   size="medium"
                   placeholder="Electricity Bill"
-                  value={values.ebill}
+                  value={values.eBill}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.ebill && !!errors.ebill}
-                  helperText={touched.ebill && errors.ebill}
+                  error={!!touched.eBill && !!errors.eBill}
+                  helperText={touched.eBill && errors.eBill}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
                   type="number"
-                  name="wbill"
-                  label="wbill"
+                  name="wBill"
+                  label="wBill"
                   color="info"
                   size="medium"
                   placeholder="Water Bill"
-                  value={values.wbill}
+                  value={values.wBill}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.wbill && !!errors.wbill}
-                  helperText={touched.wbill && errors.wbill}
+                  error={!!touched.wBill && !!errors.wBill}
+                  helperText={touched.wBill && errors.wBill}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
                   type="number"
-                  name="municipal_tax"
-                  label="municipal_tax"
+                  name="municipalTax"
+                  label="municipalTax"
                   color="info"
                   size="medium"
                   placeholder="Municipal Tax"
-                  value={values.municipal_tax}
+                  value={values.municipalTax}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.municipal_tax && !!errors.municipal_tax}
-                  helperText={touched.municipal_tax && errors.municipal_tax}
+                  error={!!touched.municipalTax && !!errors.municipalTax}
+                  helperText={touched.municipalTax && errors.municipalTax}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
                   type="number"
-                  name="bank_emi"
-                  label="bank_emi"
+                  name="bankEmi"
+                  label="bankEmi"
                   color="info"
                   size="medium"
                   placeholder="Bank Emi"
-                  value={values.bank_emi}
+                  value={values.bankEmi}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.bank_emi && !!errors.bank_emi}
-                  helperText={touched.bank_emi && errors.bank_emi}
+                  error={!!touched.bankEmi && !!errors.bankEmi}
+                  helperText={touched.bankEmi && errors.bankEmi}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
@@ -130,16 +130,16 @@ const TransactionForm = props => {
                 <TextField
                   fullWidth
                   type="number"
-                  name="maintanance"
-                  label="maintanance"
+                  name="maintenance"
+                  label="maintenance"
                   color="info"
                   size="medium"
-                  placeholder="Maintanance"
-                  value={values.maintanance}
+                  placeholder="Maintenance"
+                  value={values.maintenance}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.maintanance && !!errors.maintanance}
-                  helperText={touched.maintanance && errors.maintanance}
+                  error={!!touched.maintenance && !!errors.maintenance}
+                  helperText={touched.maintenance && errors.maintenance}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
@@ -192,7 +192,7 @@ const TransactionForm = props => {
               </Grid>
               <Grid item sm={6} xs={12}>
                 <Button variant="contained" color="info" type="submit">
-                  Add Expences
+                  Add Expenses
                 </Button>
               </Grid>
             </Grid>
@@ -207,12 +207,12 @@ export default TransactionForm;
 
 TransactionForm.propTypes = {
   initialValues: PropTypes.shape({
-    ebill: PropTypes.number.isRequired,
-    wbill: PropTypes.number.isRequired,
-    municipal_tax: PropTypes.number.isRequired,
-    bank_emi: PropTypes.number.isRequired,
+    eBill: PropTypes.number.isRequired,
+    wWill: PropTypes.number.isRequired,
+    municipalTax: PropTypes.number.isRequired,
+    bankEmi: PropTypes.number.isRequired,
     salary: PropTypes.number.isRequired,
-    maintanance: PropTypes.number.isRequired,
+    maintenance: PropTypes.number.isRequired,
     laundry: PropTypes.number.isRequired,
     miscellaneous: PropTypes.number.isRequired,
     remark: PropTypes.string.isRequired,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getResidents } from '../../firebase/bookabed/getBooking';
+import { getResidents } from '../../firebase/bookAbed/get-booking';
 
 const ResidentsData = () => {
   const [residents, setResidents] = useState([]);

@@ -3,7 +3,7 @@ import firebaseApp from '../config';
 
 const firestore = getFirestore(firebaseApp);
 
-export const bookbed = async values => {
+export const bookBed = async values => {
     try {
         const response = await addDoc(collection(firestore, 'booking'), values);
         return { status: 200, data: response };

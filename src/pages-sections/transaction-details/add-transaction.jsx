@@ -6,18 +6,18 @@ import { H3 } from 'components/Typography'; // Local CUSTOM COMPONENT
 import { Container } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import TransactionForm from './add-transaction-form';
-import { addExpense } from '../../firebase/expenses/addExpenses';
+import { addExpense } from '../../firebase/expenses/add-expenses';
 
 const AddTransactionView = () => {
   const router = useRouter();
 
   const INITIAL_VALUES = {
-    ebill: '',
-    wbill: '',
-    municipal_tax: '',
-    bank_emi: '',
+    eBill: '',
+    wBill: '',
+    municipalTax: '',
+    bankEmi: '',
     salary: '',
-    maintanance: '',
+    maintenance: '',
     laundry: '',
     miscellaneous: '',
     remark: '',
@@ -27,16 +27,17 @@ const AddTransactionView = () => {
     try {
       const data = await addExpense(values);
 
-      if (data.ok) {
-        console.log('Booking successful:', data);
-        router.push('/addAllotment');
+      if (data.status === 200) {
+        console.log('Expense added successfully:', data);
+        router.push('/add-allotment');
       } else {
-        console.error('Booking failed:');
+        console.error('Expense addition failed:', data.message);
       }
     } catch (error) {
-      console.log(error);
+      console.error('Error during expense addition:', error);
     }
   };
+
   return (
     <Container sx={{ mt: 12, position: 'relative' }}>
       <H3 align="center" mb={2}>
