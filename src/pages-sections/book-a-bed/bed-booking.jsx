@@ -23,8 +23,7 @@ const BedBookingPageView = () => {
     validationDocumentNo: '',
   };
 
-  const handleFormSubmit = async (e, values) => {
-    e.preventDefault();
+  const handleFormSubmit = async values => {
     try {
       const response = await bookbed(values);
 

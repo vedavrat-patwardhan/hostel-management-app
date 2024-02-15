@@ -2,6 +2,7 @@ import React from 'react';
 import { Container } from '@mui/material';
 import AddAllotmentForm from './addAllotment-form';
 import { H3 } from '../../components/Typography';
+import { hostelBedData } from '../../data/data';
 
 const AddAllotmentView = () => {
   const INITIAL_VALUES = {
