@@ -2,16 +2,16 @@
 
 import React from 'react';
 import { Box } from '@mui/material';
-import Header from 'components/header';
-import AddExpensesView from './add-expenses-view';
+import AllPaymentsView from './all-payments-view';
+import Header from '../../components/header';
 
-const AddExpenses = () => (
+const AllPayments = () => (
   <Box bgcolor="background.paper" minHeight="100vh">
     <Header />
     <Box maxWidth={1280} margin="auto">
-      <AddExpensesView />
+      <AllPaymentsView />
     </Box>
   </Box>
 );
 
-export default AddExpenses;
+export default AllPayments;

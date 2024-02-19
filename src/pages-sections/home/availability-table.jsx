@@ -5,24 +5,25 @@ import TextField from '@mui/material/TextField';
 
 import { H2 } from 'components/Typography';
 import DataListTable from './components/table';
+import { bedData } from '../../utils/constants';
 
 const AvailabilityTable = () => {
-  const dummyData = [
-    {
-      floorNo: 1,
-      rooms: [
-        {
-          roomNo: 101,
-          beds: ['101-A', '101-B', '101-C'],
-        },
-        {
-          roomNo: 102,
-          beds: ['102-A', '102-B', '102-C'],
-        },
-      ],
-    },
-    // Add more data here...
-  ];
+  // const dummyData = [
+  //   {
+  //     floorNo: 1,
+  //     rooms: [
+  //       {
+  //         roomNo: 101,
+  //         beds: ['101-A', '101-B', '101-C'],
+  //       },
+  //       {
+  //         roomNo: 102,
+  //         beds: ['102-A', '102-B', '102-C'],
+  //       },
+  //     ],
+  //   },
+  //   // Add more data here...
+  // ];
 
   const tableHeading = [
     {
@@ -90,7 +91,7 @@ const AvailabilityTable = () => {
             }}
           />
         </Box>
-        <DataListTable dataList={dummyData} tableHeading={tableHeading} />
+        <DataListTable dataList={bedData} tableHeading={tableHeading} />
       </Container>
     </Box>
   );

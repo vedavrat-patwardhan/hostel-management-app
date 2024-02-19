@@ -1,10 +1,10 @@
 import React from 'react';
 import { keywords } from 'utils/constants';
-import AddTransaction from '../../pages-sections/transaction-details';
+import AllPayments from '../../pages-sections/all-payments';
 
 export const metadata = {
-  title: 'Transaction Details',
-  description: `Form to add transactions in hostel.`,
+  title: 'All Payments',
+  description: `Hostel Management platform for hostel owners.`,
   authors: [
     {
       name: 'Vedavrat Patwardhan',
@@ -15,5 +15,6 @@ export const metadata = {
   keywords,
 };
 
-const IndexPage = () => <AddTransaction />;
+const IndexPage = () => <AllPayments />;
+
 export default IndexPage;

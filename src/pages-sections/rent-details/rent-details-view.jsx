@@ -1,26 +1,27 @@
-import React, { useEffect, useState } from 'react';
 import { Container } from '@mui/material';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import AddAllotmentForm from './add-allotment-form';
 import { H3 } from '../../components/Typography';
+import RentDetailsForm from './rent-details-form';
+import { addRent } from '../../firebase/rent-details/add-rent';
 import { getBedBookingData } from '../../firebase/bookAbed/get-booking';
-import { addAllotment } from '../../firebase/allotment/add-allotment';
 
-const AddAllotmentView = () => {
+const RentDetailsView = () => {
   const router = useRouter();
   const [residents, setResidents] = useState('');
-
-  const INITIAL_VALUES = {
-    name: '',
+  const initialValues = {
+    idNo: '',
     bedNo: '',
-    startDate: new Date(),
+    advanceDeposit: 0,
     dueDate: new Date(),
-    deposit: 0,
-    paymentMethod: '',
+    monthlyRent: 0,
+    miscellaneous: 0,
+    remark: '',
+    paidAmount: 0,
   };
 
   useEffect(() => {
-    const GetAllResidents = async () => {
+    const AllResidents = async () => {
       try {
         const response = await getBedBookingData();
         if (response.status === 200) {
@@ -32,34 +33,33 @@ const AddAllotmentView = () => {
         console.log('Error', error);
       }
     };
-    GetAllResidents();
+    AllResidents();
   }, []);
   const handleFormSubmit = async values => {
-    console.log(values, 'Add allotment data');
+    console.log(values);
     try {
-      const response = await addAllotment(values);
+      const response = await addRent(values);
       if (response.status === 200) {
-        console.log('Allotment data is added', response.data);
-        router.push('/rent-details');
+        console.log('Rent details added successfully', response.data);
+        router.push('/');
       } else {
-        console.log('Error in getting allotments', response.message);
+        console.log('Error in adding rent details', response.message);
       }
     } catch (error) {
-      console.log('Error', error);
+      console.log('Something went wrong', error);
     }
   };
-
   return (
     <Container sx={{ mt: 12, position: 'relative' }}>
       <H3 align="center" mb={2}>
-        AddAllotment
+        Rent Details
       </H3>
-      <AddAllotmentForm
-        initialValues={INITIAL_VALUES}
+      <RentDetailsForm
+        initialValues={initialValues}
         handleFormSubmit={handleFormSubmit}
         residents={residents}
       />
     </Container>
   );
 };
-export default AddAllotmentView;
+export default RentDetailsView;

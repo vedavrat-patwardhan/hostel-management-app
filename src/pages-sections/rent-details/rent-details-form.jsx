@@ -1,24 +1,24 @@
 import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { Button, Card, Grid, MenuItem, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
+import { Button, Card, Grid, MenuItem, TextField } from '@mui/material';
 import { bedData } from '../../utils/constants';
 
 const VALIDATION_SCHEMA = yup.object().shape({
-  name: yup.string().min(2).required('Name is required'),
-  bedNo: yup.string().required('Bed no is required'),
-  startDate: yup.date().required('Start date is required'),
-  dueDate: yup
-    .date()
-    .required('Due date is required')
-    .min(yup.ref('startDate'), 'Due date must be after start date'),
-  deposit: yup.number().required('Deposit is required'),
-  paymentMethod: yup.string().required('Payment method is required'),
+  idNo: yup.string().required('Id No is required'),
+  bedNo: yup.string().required('Bed No is required'),
+  advanceDeposit: yup.number().required('Advance deposit is required'),
+  dueDate: yup.date().required('Due date is required'),
+  monthlyRent: yup.number().required('Monthly rent is required'),
+  miscellaneous: yup.number().required('Miscellaneous is required'),
+  remark: yup.string().required('Remark is required'),
+  paidAmount: yup.number().required('Paid Amount is required'),
 });
-const AddAllotmentForm = props => {
+
+const RentDetailsForm = props => {
   const { initialValues, handleFormSubmit, residents } = props;
-  console.log(residents, 'Residents in form');
+
   return (
     <Card
       sx={{
@@ -27,16 +27,16 @@ const AddAllotmentForm = props => {
       }}
     >
       <Formik
-        onSubmit={handleFormSubmit}
         initialValues={initialValues}
+        onSubmit={handleFormSubmit}
         validationSchema={VALIDATION_SCHEMA}
       >
         {({
-          values,
           errors,
           touched,
-          handleChange,
+          values,
           handleBlur,
+          handleChange,
           handleSubmit,
         }) => (
           <form onSubmit={handleSubmit}>
@@ -45,24 +45,24 @@ const AddAllotmentForm = props => {
                 <TextField
                   select
                   fullWidth
-                  name="name"
-                  label="Name"
+                  name="idNo"
+                  label="IdNo"
                   color="info"
                   size="medium"
-                  placeholder="Name"
-                  value={values.name}
+                  placeholder="IdNo"
+                  value={values.idNo}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.name && !!errors.name}
-                  helperText={touched.name && errors.name}
+                  error={!!touched.idNo && !!errors.idNo}
+                  helperText={touched.idNo && errors.idNo}
                 >
                   {residents &&
                     residents.map(resident => (
                       <MenuItem
                         key={resident.id}
-                        value={`${resident.data.name}-${resident.id}`}
+                        value={` ${resident.data.name}-${resident.id}`}
                       >
-                        {resident.data.name}-{resident.id}
+                        {` ${resident.data.name}-${resident.id}`}
                       </MenuItem>
                     ))}
                 </TextField>
@@ -72,10 +72,10 @@ const AddAllotmentForm = props => {
                   select
                   fullWidth
                   name="bedNo"
-                  label="bedNo"
+                  label="BedNo"
                   color="info"
                   size="medium"
-                  placeholder="Bed No"
+                  placeholder="BedNo"
                   value={values.bedNo}
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -90,6 +90,7 @@ const AddAllotmentForm = props => {
                             key={index}
                             value={`${floor.floorNo}-floor-${bed}`}
                           >
+                            {' '}
                             {`${floor.floorNo}-floor-${bed}`}
                           </MenuItem>
                         )),
@@ -100,34 +101,27 @@ const AddAllotmentForm = props => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="startDate"
-                  label="startDate"
-                  type="date"
+                  name="advanceDeposit"
+                  label="AdvanceDeposit"
                   color="info"
                   size="medium"
-                  placeholder="Start Date"
-                  value={values.startDate}
+                  placeholder="AdvanceDeposit"
+                  value={values.advanceDeposit}
                   onBlur={handleBlur}
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
                   onChange={handleChange}
-                  error={!!touched.startDate && !!errors.startDate}
-                  helperText={touched.startDate && errors.startDate}
+                  error={!!touched.advanceDeposit && !!errors.advanceDeposit}
+                  helperText={touched.advanceDeposit && errors.advanceDeposit}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
                   name="dueDate"
-                  label="dueDate"
-                  type="date"
+                  label="DueDate"
                   color="info"
                   size="medium"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                  placeholder="Due Date"
+                  type="date"
+                  placeholder="DueDate"
                   value={values.dueDate}
                   onBlur={handleBlur}
                   onChange={handleChange}
@@ -138,42 +132,66 @@ const AddAllotmentForm = props => {
               <Grid item sm={6} xs={12}>
                 <TextField
                   fullWidth
-                  name="deposit"
-                  label="deposit"
+                  name="monthlyRent"
+                  label="MonthlyRent"
                   color="info"
                   size="medium"
-                  placeholder="Deposit"
-                  value={values.deposit}
+                  placeholder="MonthlyRent"
+                  value={values.monthlyRent}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.deposit && !!errors.deposit}
-                  helperText={touched.deposit && errors.deposit}
+                  error={!!touched.monthlyRent && !!errors.monthlyRent}
+                  helperText={touched.monthlyRent && errors.monthlyRent}
                 />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <TextField
-                  select
                   fullWidth
-                  name="paymentMethod"
-                  label="paymentMethod"
+                  name="miscellaneous"
+                  label="Miscellaneous"
                   color="info"
                   size="medium"
-                  placeholder="Payment Method"
-                  value={values.paymentMethod}
+                  placeholder="Miscellaneous"
+                  value={values.miscellaneous}
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  error={!!touched.paymentMethod && !!errors.paymentMethod}
-                  helperText={touched.paymentMethod && errors.paymentMethod}
-                >
-                  <MenuItem value="cash">Cash</MenuItem>
-                  <MenuItem value="upi">UPI</MenuItem>
-                  <MenuItem value="creditCard">Credit Card</MenuItem>
-                  <MenuItem value="debitCard">Debit Card</MenuItem>
-                </TextField>
+                  error={!!touched.miscellaneous && !!errors.miscellaneous}
+                  helperText={touched.miscellaneous && errors.miscellaneous}
+                />
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                <TextField
+                  fullWidth
+                  name="remark"
+                  label="Remark"
+                  color="info"
+                  size="medium"
+                  placeholder="Remark"
+                  value={values.remark}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  error={!!touched.remark && !!errors.remark}
+                  helperText={touched.remark && errors.remark}
+                />
+              </Grid>
+              <Grid item sm={6} xs={12}>
+                <TextField
+                  fullWidth
+                  name="paidAmount"
+                  label="PaidAmount"
+                  color="info"
+                  size="medium"
+                  placeholder="PaidAmount"
+                  value={values.paidAmount}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  error={!!touched.paidAmount && !!errors.paidAmount}
+                  helperText={touched.paidAmount && errors.paidAmount}
+                />
               </Grid>
               <Grid item sm={6} xs={12}>
                 <Button variant="contained" color="info" type="submit">
-                  AddAllotment
+                  Add Rent Details
                 </Button>
               </Grid>
             </Grid>
@@ -184,16 +202,18 @@ const AddAllotmentForm = props => {
   );
 };
 
-export default AddAllotmentForm;
+export default RentDetailsForm;
 
-AddAllotmentForm.propTypes = {
+RentDetailsForm.propTypes = {
   initialValues: PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    idNo: PropTypes.string.isRequired,
     bedNo: PropTypes.string.isRequired,
-    startDate: PropTypes.instanceOf(Date).isRequired,
+    advanceDeposit: PropTypes.number.isRequired,
     dueDate: PropTypes.instanceOf(Date).isRequired,
-    deposit: PropTypes.number.isRequired,
-    paymentMethod: PropTypes.string.isRequired,
+    monthlyRent: PropTypes.number.isRequired,
+    miscellaneous: PropTypes.number.isRequired,
+    remark: PropTypes.string.isRequired,
+    paidAmount: PropTypes.number.isRequired,
   }).isRequired,
   handleFormSubmit: PropTypes.func.isRequired,
 };

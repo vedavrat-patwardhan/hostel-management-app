@@ -1,22 +1,18 @@
-import { getFirestore, getDocs, collection } from 'firebase/firestore';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import firebaseApp from '../config';
 
 const firestore = getFirestore(firebaseApp);
 
-export const getBedBookingData = async () => {
-    const collectionRef = collection(firestore, 'booking');
+export const getRentDetails = async () => {
     try {
         const documents = [];
-
-        const querySnapshot = await getDocs(collectionRef);
-
-        querySnapshot.forEach(doc => {
+        const QueySnapshot = await getDocs(collection(firestore, 'rentDetails'));
+        QueySnapshot.forEach(doc => {
             documents.push({
                 id: doc.id,
                 data: doc.data(),
             });
         });
-
         return { status: 200, data: documents };
     } catch (error) {
         return { status: 404, message: error };

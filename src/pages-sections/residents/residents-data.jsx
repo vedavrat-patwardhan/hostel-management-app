@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getResidents } from '../../firebase/bookAbed/get-booking';
+import { getBedBookingData } from '../../firebase/bookAbed/get-booking';
 
 const ResidentsData = () => {
   const [residents, setResidents] = useState([]);
@@ -8,11 +8,15 @@ const ResidentsData = () => {
 
   const fetchData = async () => {
     try {
-      const result = await getResidents();
-      setResidents(result);
-      setLoading(false);
+      const result = await getBedBookingData();
+      if (result.status == 200) {
+        setResidents(result.data);
+        setLoading(false);
+      } else {
+        setError('Failed to fetch data');
+        setLoading(false);
+      }
     } catch (error) {
-      console.error(error);
       setError(error);
       setLoading(false);
     }

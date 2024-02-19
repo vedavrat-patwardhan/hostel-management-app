@@ -3,7 +3,7 @@ import firebaseApp from '../config';
 
 const firestore = getFirestore(firebaseApp);
 
-const getExpense = async () => {
+export const getExpense = async () => {
     try {
         const documents = [];
         const QueySnapshot = await getDocs(collection(firestore, 'expenses'));
@@ -13,11 +13,9 @@ const getExpense = async () => {
                 data: doc.data(),
             });
         });
-        console.log(documents, 'Expenses data');
-        return documents;
-    } catch (e) {
-        console.error('Error getting documents: ', error);
-        return [];
+
+        return { status: 200, data: documents }
+    } catch (error) {
+        return { status: 404, message: error }
     }
-};
-export default getExpense;
+

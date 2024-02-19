@@ -1,17 +1,17 @@
 'use client';
 
-import React from 'react';
 import { Box } from '@mui/material';
+import React from 'react';
 import Header from 'components/header';
-import AddExpensesView from './add-expenses-view';
+import RentDetailsView from './rent-details-view';
 
-const AddExpenses = () => (
+const RentDetails = () => (
   <Box bgcolor="background.paper" minHeight="100vh">
     <Header />
     <Box maxWidth={1280} margin="auto">
-      <AddExpensesView />
+      <RentDetailsView />
     </Box>
   </Box>
 );
 
-export default AddExpenses;
+export default RentDetails;

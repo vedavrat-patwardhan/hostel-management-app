@@ -22,7 +22,7 @@ const VALIDATION_SCHEMA = yup.object().shape({
   remark: yup.string().required('Remark is required'),
 });
 
-const TransactionForm = props => {
+const ExpensesForm = props => {
   const { initialValues, handleFormSubmit } = props;
   return (
     <Card
@@ -203,9 +203,9 @@ const TransactionForm = props => {
   );
 };
 
-export default TransactionForm;
+export default ExpensesForm;
 
-TransactionForm.propTypes = {
+ExpensesForm.propTypes = {
   initialValues: PropTypes.shape({
     eBill: PropTypes.number.isRequired,
     wWill: PropTypes.number.isRequired,
