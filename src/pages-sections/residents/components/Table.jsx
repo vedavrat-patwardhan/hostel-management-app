@@ -50,46 +50,16 @@ const DataListTable = ({ datalist, tableHeading }) => {
               datalist.map(data => (
                 <StyledTableRow key={data.email}>
                   <StyledTableCell align="center" rowSpan={1}>
-                    {data.name.split('-')[0]}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
                     {data.name.split('-')[1]}
                   </StyledTableCell>
                   <StyledTableCell align="center" rowSpan={1}>
-                    {data.personalContactNo}
+                    {data.name.split('-')[0]}
                   </StyledTableCell>
                   <StyledTableCell align="center" rowSpan={1}>
                     {data.bedNo}
                   </StyledTableCell>
                   <StyledTableCell align="center" rowSpan={1}>
-                    {data.startDate}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    {data.dueDate}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    {data.monthlyRent}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    {data.paidAmount}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    {data.miscellaneous}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    {data.remark}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    receivable
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    <Button>Update Payment</Button>
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    <Button>Payment Reminder</Button>
-                  </StyledTableCell>
-                  <StyledTableCell align="center" rowSpan={1}>
-                    <Button>Details</Button>
+                    <Button>Show Details</Button>
                   </StyledTableCell>
                 </StyledTableRow>
               ))
