@@ -144,7 +144,6 @@ const AllPaymentsView = () => {
     }
   }, [bookingData, allotmentData, rentDetailsData]);
 
-  console.log(dataList, 'Hey datalist');
   return (
     <Container sx={{ mt: 12, position: 'relative' }}>
       <H3 align="center" mb={2}>

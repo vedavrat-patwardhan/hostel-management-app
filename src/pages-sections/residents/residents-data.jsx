@@ -3,7 +3,6 @@ import { Container } from '@mui/material';
 import { getBedBookingData } from '../../firebase/bookAbed/get-booking';
 import { getAllotment } from '../../firebase/allotment/get-allotment';
 import { getRentDetails } from '../../firebase/rent-details/get-rent-details';
-import { H3 } from '../../components/Typography';
 import DataListTable from './components/Table';
 
 const ResidentsData = () => {
@@ -80,6 +79,9 @@ const ResidentsData = () => {
     fetchRentDetailsData();
   }, []);
 
+  console.log(allotmentData, 'allotmentData');
+  console.log(rentDetailsData, 'rent');
+  console.log(bookingData, 'booking');
   useEffect(() => {
     if (
       bookingData.length > 0 &&
@@ -95,23 +97,26 @@ const ResidentsData = () => {
     }
   }, [bookingData, allotmentData, rentDetailsData]);
 
-  const mergeDocuments = (bookingData, allotmentData, rentDetailsData) =>
-    bookingData.map(booking => {
-      const allotment = allotmentData.find(
-        a => a.data.name.split('-')[1] === booking.id,
-      );
-      const rentDetails = rentDetailsData.find(
-        r => r.data.idNo.split('-')[1] === booking.id,
-      );
-
-      return {
-        ...booking?.data,
-        ...allotment?.data,
-        ...rentDetails?.data,
-      };
-    });
-
-  return <DataListTable datalist={dataList} tableHeading={tableHeading} />;
+  return (
+    <Container>
+      <DataListTable datalist={dataList} tableHeading={tableHeading} />;
+    </Container>
+  );
 };
+const mergeDocuments = (bookingData, allotmentData, rentDetailsData) =>
+  bookingData.map(booking => {
+    const allotment = allotmentData.find(
+      a => a.data.name.split('-')[1] === booking.id,
+    );
+    const rentDetails = rentDetailsData.find(
+      r => r.data.idNo.split('-')[1] === booking.id,
+    );
+
+    return {
+      ...booking?.data,
+      ...allotment?.data,
+      ...rentDetails?.data,
+    };
+  });
 
 export default ResidentsData;
