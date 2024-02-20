@@ -105,6 +105,8 @@ const DataListTable = ({ datalist, tableHeading }) => {
     }
   };
 
+  const showDetailsHandler = idNo => {};
+
   return (
     <div>
       <Scrollbar>
@@ -162,7 +164,9 @@ const DataListTable = ({ datalist, tableHeading }) => {
                       <Button>Payment Reminder</Button>
                     </StyledTableCell>
                     <StyledTableCell align="center" rowSpan={1}>
-                      <Button>Details</Button>
+                      <Button onClick={() => showDetailsHandler(data.idNo)}>
+                        Details
+                      </Button>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))
