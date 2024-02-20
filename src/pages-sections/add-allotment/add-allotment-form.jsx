@@ -1,9 +1,12 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Button, Card, Grid, MenuItem, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 import { bedData } from '../../utils/constants';
+import { getAllotment } from '../../firebase/allotment/get-allotment';
 
 const VALIDATION_SCHEMA = yup.object().shape({
   name: yup.string().min(2).required('Name is required'),
@@ -17,8 +20,39 @@ const VALIDATION_SCHEMA = yup.object().shape({
   paymentMethod: yup.string().required('Payment method is required'),
 });
 const AddAllotmentForm = props => {
+  const [allotmentData, setAllotmentData] = useState([]);
+
+  useEffect(() => {
+    const AllAllotmentData = async () => {
+      try {
+        const response = await getAllotment();
+        if (response.status === 200) {
+          setAllotmentData(response.data);
+        } else {
+          console.log('Error in getting allotment data', response.message);
+        }
+      } catch (error) {
+        console.error('Error', error.message);
+      }
+    };
+    AllAllotmentData();
+  }, []);
+
+  const bedsToBeFiltered = allotmentData.map(item => item.data.bedNo);
+
+  const filteredBeds = bedData.map(floor => ({
+    floorNo: floor.floorNo,
+    rooms: floor.rooms.map(room => ({
+      roomNo: room.roomNo,
+      beds: room.beds.filter(bed => {
+        const bedNumber = `${floor.floorNo}-floor-${room.roomNo}-${bed.split('-')[1]}`;
+        return !bedsToBeFiltered.includes(bedNumber);
+      }),
+    })),
+  }));
+
   const { initialValues, handleFormSubmit, residents } = props;
-  console.log(residents, 'Residents in form');
+
   return (
     <Card
       sx={{
@@ -82,8 +116,8 @@ const AddAllotmentForm = props => {
                   error={!!touched.bedNo && !!errors.bedNo}
                   helperText={touched.bedNo && errors.bedNo}
                 >
-                  {bedData &&
-                    bedData.map(floor =>
+                  {filteredBeds &&
+                    filteredBeds.map(floor =>
                       floor.rooms.map(room =>
                         room.beds.map((bed, index) => (
                           <MenuItem

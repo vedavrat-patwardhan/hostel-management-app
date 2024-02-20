@@ -32,6 +32,20 @@ const StyledTableRow = styled(TableRow)({
   },
 });
 
+const SearchContainer = styled('div')({
+  marginBottom: '16px',
+  '& label': {
+    marginRight: '8px',
+  },
+  '& input': {
+    padding: '8px',
+    borderRadius: '4px',
+    border: '1px solid #ccc',
+    marginRight: '8px',
+    minWidth: '200px',
+  },
+});
+
 const DataListTable = ({ datalist, tableHeading }) => {
   const { order, orderBy, handleRequestSort } = useMuiTable({
     listData: datalist,
@@ -39,6 +53,7 @@ const DataListTable = ({ datalist, tableHeading }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [requiredDoc, setRequiredDoc] = useState(null);
+  const [searchItem, setSearchItem] = useState('');
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -53,10 +68,26 @@ const DataListTable = ({ datalist, tableHeading }) => {
       console.log('Error in getting document');
     }
   };
-  console.log(datalist, 'datalist');
+
+  console.log(datalist, 'Datalist is here');
+  const filteredData = datalist.filter(item =>
+    item.name.toLowerCase().includes(searchItem.toLowerCase()),
+  );
   return (
     <>
       <Scrollbar>
+        <SearchContainer>
+          <form>
+            <label htmlFor="search">Search</label>
+            <input
+              type="text"
+              id="search"
+              name="search"
+              value={searchItem}
+              onChange={e => setSearchItem(e.target.value)}
+            />
+          </form>
+        </SearchContainer>
         <TableContainer>
           <Table>
             <TableHeader
@@ -66,8 +97,8 @@ const DataListTable = ({ datalist, tableHeading }) => {
               onRequestSort={handleRequestSort}
             />
             <TableBody>
-              {datalist && datalist.length > 0 ? (
-                datalist.map(data => (
+              {filteredData && filteredData.length > 0 ? (
+                filteredData.map(data => (
                   <StyledTableRow key={data.email}>
                     <StyledTableCell align="center" rowSpan={1}>
                       {data.name.split('-')[1]}

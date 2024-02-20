@@ -54,11 +54,15 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(false);
   const downSM = useMediaQuery(theme => theme.breakpoints.down('sm'));
   const router = useRouter();
   const toggleSidenav = () => setOpen(prevVal => !prevVal);
   const currentPath = usePathname();
 
+  const handleDropDown = () => {
+    setOpenDropdown(prev => !prev);
+  };
   return (
     <HeaderWrapper>
       <div
@@ -77,7 +81,11 @@ const Header = () => {
               Home
             </Box>
             <Box mx="auto" />
-            <FlexBox className="right-links" alignItems="center">
+            <FlexBox
+              className="right-links"
+              alignItems="center"
+              position="relative"
+            >
               <Typography
                 className="link"
                 color="grey.600"
@@ -92,10 +100,37 @@ const Header = () => {
                 color="grey.600"
                 p="0.25rem 1.25rem"
                 fontWeight={currentPath.includes('transaction') ? 700 : 400}
-                onClick={() => router.push('/transaction')}
+                onClick={handleDropDown}
               >
-                Transactions
+                Transaction
               </Typography>
+              {openDropdown && (
+                <FlexBox
+                  flexDirection="column"
+                  position="absolute"
+                  top="100%"
+                  left="100px"
+                  backgroundColor="white"
+                  boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
+                  borderRadius="4px"
+                  zIndex={100}
+                >
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/add-expenses')}
+                  >
+                    Add Expenses
+                  </Typography>
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/all-payments')}
+                  >
+                    All Payments
+                  </Typography>
+                </FlexBox>
+              )}
               <Typography
                 className="link"
                 color="grey.600"
