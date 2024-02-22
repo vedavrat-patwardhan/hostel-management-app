@@ -17,6 +17,37 @@ const VALIDATION_SCHEMA = yup.object().shape({
 });
 
 const RentDetailsForm = props => {
+  // const [allotmentData, setAllotmentData] = useState([]);
+
+  // useEffect(() => {
+  //   const AllAllotmentData = async () => {
+  //     try {
+  //       const response = await getAllotment();
+  //       if (response.status === 200) {
+  //         setAllotmentData(response.data);
+  //       } else {
+  //         console.log('Error in getting allotment data', response.message);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error', error.message);
+  //     }
+  //   };
+  //   AllAllotmentData();
+  // }, []);
+
+  // const bedsToBeFiltered = allotmentData.map(item => item.data.bedNo);
+
+  // const filteredBeds = bedData.map(floor => ({
+  //   floorNo: floor.floorNo,
+  //   rooms: floor.rooms.map(room => ({
+  //     roomNo: room.roomNo,
+  //     beds: room.beds.filter(bed => {
+  //       const bedNumber = `${floor.floorNo}-floor-${room.roomNo}-${bed.split('-')[1]}`;
+  //       return !bedsToBeFiltered.includes(bedNumber);
+  //     }),
+  //   })),
+  // }));
+
   const { initialValues, handleFormSubmit, residents } = props;
 
   return (

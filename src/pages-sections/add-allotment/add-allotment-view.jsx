@@ -17,6 +17,7 @@ const AddAllotmentView = () => {
     dueDate: new Date(),
     deposit: 0,
     paymentMethod: '',
+    status: 'live',
   };
 
   useEffect(() => {
