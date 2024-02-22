@@ -79,9 +79,6 @@ const ResidentsData = () => {
     fetchRentDetailsData();
   }, []);
 
-  console.log(allotmentData, 'allotmentData');
-  console.log(rentDetailsData, 'rent');
-  console.log(bookingData, 'booking');
   useEffect(() => {
     if (
       bookingData.length > 0 &&

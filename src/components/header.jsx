@@ -52,16 +52,43 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
+const DropdownWrapper = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  top: '100%',
+  left: 0,
+  backgroundColor: 'white',
+  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+  borderRadius: '4px',
+  zIndex: 100,
+}));
+
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(false);
+  const [openTransactionDropdown, setOpenTransactionDropdown] = useState(false);
+  const [openReportsDropdown, setOpenReportsDropdown] = useState(false);
+  const [openResidentsDropdown, setOpenResidentsDropdown] = useState(false);
+
   const downSM = useMediaQuery(theme => theme.breakpoints.down('sm'));
   const router = useRouter();
   const toggleSidenav = () => setOpen(prevVal => !prevVal);
   const currentPath = usePathname();
 
-  const handleDropDown = () => {
-    setOpenDropdown(prev => !prev);
+  const handleTransactionDropdown = () => {
+    setOpenTransactionDropdown(prev => !prev);
+    setOpenReportsDropdown(false);
+    setOpenResidentsDropdown(false);
+  };
+
+  const handleReportsDropdown = () => {
+    setOpenReportsDropdown(prev => !prev);
+    setOpenTransactionDropdown(false);
+    setOpenResidentsDropdown(false);
+  };
+
+  const handleResidentsDropdown = () => {
+    setOpenResidentsDropdown(prev => !prev);
+    setOpenReportsDropdown(false);
+    setOpenTransactionDropdown(false);
   };
   return (
     <HeaderWrapper>
@@ -100,11 +127,11 @@ const Header = () => {
                 color="grey.600"
                 p="0.25rem 1.25rem"
                 fontWeight={currentPath.includes('transaction') ? 700 : 400}
-                onClick={handleDropDown}
+                onClick={handleTransactionDropdown}
               >
                 Transaction
               </Typography>
-              {openDropdown && (
+              {openTransactionDropdown && (
                 <FlexBox
                   flexDirection="column"
                   position="absolute"
@@ -136,19 +163,96 @@ const Header = () => {
                 color="grey.600"
                 p="0.25rem 1.25rem"
                 fontWeight={currentPath.includes('residents') ? 700 : 400}
-                onClick={() => router.push('/residents')}
+                onClick={handleResidentsDropdown}
               >
                 Residents
+              </Typography>
+              {openResidentsDropdown && (
+                <FlexBox
+                  flexDirection="column"
+                  position="absolute"
+                  top="100%"
+                  left="200px"
+                  backgroundColor="white"
+                  boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
+                  borderRadius="4px"
+                  zIndex={100}
+                >
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/live-residents')}
+                  >
+                    Live Residents
+                  </Typography>
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/left-residents')}
+                  >
+                    Left Residents
+                  </Typography>
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/left-without-paying')}
+                  >
+                    Left Without Paying
+                  </Typography>
+                </FlexBox>
+              )}
+              <Typography
+                className="link"
+                color="grey.600"
+                p="0.25rem 1.25rem"
+                fontWeight={currentPath.includes('closure') ? 700 : 400}
+                onClick={() => router.push('/closure')}
+              >
+                Closure
               </Typography>
               <Typography
                 className="link"
                 color="grey.600"
                 p="0.25rem 1.25rem"
                 fontWeight={currentPath.includes('reports') ? 700 : 400}
-                onClick={() => router.push('/reports')}
+                onClick={handleReportsDropdown}
               >
                 Reports
               </Typography>
+              {openReportsDropdown && (
+                <FlexBox
+                  flexDirection="column"
+                  position="absolute"
+                  top="100%"
+                  left="430px"
+                  backgroundColor="white"
+                  boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
+                  borderRadius="4px"
+                  zIndex={100}
+                >
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/daily-reports')}
+                  >
+                    Daily Reports
+                  </Typography>
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/monthly-reports')}
+                  >
+                    Monthly Reports
+                  </Typography>
+                  <Typography
+                    className="link"
+                    p="0.25rem 1.25rem"
+                    onClick={() => router.push('/yearly-reports')}
+                  >
+                    Yearly Reports
+                  </Typography>
+                </FlexBox>
+              )}
             </FlexBox>
             {/* mobile menu */}
             {downSM && (

@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Button, Card, Grid, MenuItem, TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 import { bedData } from '../../utils/constants';
-import { getAllotment } from '../../firebase/allotment/get-allotment';
 
 const VALIDATION_SCHEMA = yup.object().shape({
   name: yup.string().min(2).required('Name is required'),
@@ -18,38 +17,39 @@ const VALIDATION_SCHEMA = yup.object().shape({
     .min(yup.ref('startDate'), 'Due date must be after start date'),
   deposit: yup.number().required('Deposit is required'),
   paymentMethod: yup.string().required('Payment method is required'),
+  status: yup.string().required('Status is required'),
 });
 const AddAllotmentForm = props => {
-  const [allotmentData, setAllotmentData] = useState([]);
+  // const [allotmentData, setAllotmentData] = useState([]);
 
-  useEffect(() => {
-    const AllAllotmentData = async () => {
-      try {
-        const response = await getAllotment();
-        if (response.status === 200) {
-          setAllotmentData(response.data);
-        } else {
-          console.log('Error in getting allotment data', response.message);
-        }
-      } catch (error) {
-        console.error('Error', error.message);
-      }
-    };
-    AllAllotmentData();
-  }, []);
+  // useEffect(() => {
+  //   const AllAllotmentData = async () => {
+  //     try {
+  //       const response = await getAllotment();
+  //       if (response.status === 200) {
+  //         setAllotmentData(response.data);
+  //       } else {
+  //         console.log('Error in getting allotment data', response.message);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error', error.message);
+  //     }
+  //   };
+  //   AllAllotmentData();
+  // }, []);
 
-  const bedsToBeFiltered = allotmentData.map(item => item.data.bedNo);
+  // const bedsToBeFiltered = allotmentData.map(item => item.data.bedNo);
 
-  const filteredBeds = bedData.map(floor => ({
-    floorNo: floor.floorNo,
-    rooms: floor.rooms.map(room => ({
-      roomNo: room.roomNo,
-      beds: room.beds.filter(bed => {
-        const bedNumber = `${floor.floorNo}-floor-${room.roomNo}-${bed.split('-')[1]}`;
-        return !bedsToBeFiltered.includes(bedNumber);
-      }),
-    })),
-  }));
+  // const filteredBeds = bedData.map(floor => ({
+  //   floorNo: floor.floorNo,
+  //   rooms: floor.rooms.map(room => ({
+  //     roomNo: room.roomNo,
+  //     beds: room.beds.filter(bed => {
+  //       const bedNumber = `${floor.floorNo}-floor-${room.roomNo}-${bed.split('-')[1]}`;
+  //       return !bedsToBeFiltered.includes(bedNumber);
+  //     }),
+  //   })),
+  // }));
 
   const { initialValues, handleFormSubmit, residents } = props;
 
@@ -116,8 +116,8 @@ const AddAllotmentForm = props => {
                   error={!!touched.bedNo && !!errors.bedNo}
                   helperText={touched.bedNo && errors.bedNo}
                 >
-                  {filteredBeds &&
-                    filteredBeds.map(floor =>
+                  {bedData &&
+                    bedData.map(floor =>
                       floor.rooms.map(room =>
                         room.beds.map((bed, index) => (
                           <MenuItem
