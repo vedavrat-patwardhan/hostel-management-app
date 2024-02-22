@@ -1,10 +1,10 @@
 import React from 'react';
-import IndexPageView from 'pages-sections/home';
 import { keywords } from 'utils/constants';
+import AddExpenses from '../../pages-sections/transaction-details';
 
 export const metadata = {
-  title: 'Hostel Management',
-  description: `Hostel Management platform for hostel owners.`,
+  title: 'Add Expenses',
+  description: `Form to add transactions in hostel.`,
   authors: [
     {
       name: 'Vedavrat Patwardhan',
@@ -15,6 +15,5 @@ export const metadata = {
   keywords,
 };
 
-const IndexPage = () => <IndexPageView />;
-
+const IndexPage = () => <AddExpenses />;
 export default IndexPage;

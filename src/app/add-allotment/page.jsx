@@ -1,10 +1,11 @@
 import React from 'react';
 import IndexPageView from 'pages-sections/home';
 import { keywords } from 'utils/constants';
+import AddAllotment from '../../pages-sections/add-allotment';
 
 export const metadata = {
-  title: 'Hostel Management',
-  description: `Hostel Management platform for hostel owners.`,
+  title: 'Add Allotment',
+  description: `Allotment data of resident on hostel.`,
   authors: [
     {
       name: 'Vedavrat Patwardhan',
@@ -15,6 +16,6 @@ export const metadata = {
   keywords,
 };
 
-const IndexPage = () => <IndexPageView />;
+const IndexPage = () => <AddAllotment />;
 
 export default IndexPage;

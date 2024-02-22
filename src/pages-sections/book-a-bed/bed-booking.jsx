@@ -2,9 +2,12 @@ import React from 'react';
 
 import { H3 } from 'components/Typography'; // Local CUSTOM COMPONENT
 import { Container } from '@mui/material';
+import { useRouter } from 'next/navigation';
 import BedBookingForm from './bed-booking-form';
+import { bookBed } from '../../firebase/bookAbed/add-booking';
 
 const BedBookingPageView = () => {
+  const router = useRouter();
   const INITIAL_VALUES = {
     name: '',
     age: 0,
@@ -20,8 +23,22 @@ const BedBookingPageView = () => {
     validationDocumentNo: '',
   };
 
-  const handleFormSubmit = values => {
-    console.log(values);
+  const handleFormSubmit = async values => {
+    try {
+      const response = await bookBed(values);
+      let documentId;
+
+      if (response.status === 200) {
+        console.log('Booking successful:', response.data);
+        documentId = response.data.id;
+        localStorage.setItem('documentId', documentId);
+        router.push('/add-allotment');
+      } else {
+        console.error('Booking failed:', response.message);
+      }
+    } catch (error) {
+      console.error('Error during booking:', error);
+    }
   };
 
   return (

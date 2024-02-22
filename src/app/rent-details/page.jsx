@@ -1,9 +1,9 @@
 import React from 'react';
-import IndexPageView from 'pages-sections/home';
 import { keywords } from 'utils/constants';
+import RentDetails from '../../pages-sections/rent-details';
 
 export const metadata = {
-  title: 'Hostel Management',
+  title: 'Rent Details',
   description: `Hostel Management platform for hostel owners.`,
   authors: [
     {
@@ -15,6 +15,6 @@ export const metadata = {
   keywords,
 };
 
-const IndexPage = () => <IndexPageView />;
+const IndexPage = () => <RentDetails />;
 
 export default IndexPage;
