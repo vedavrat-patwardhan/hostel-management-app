@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 
 import { H3 } from 'components/Typography'; // Local CUSTOM COMPONENT

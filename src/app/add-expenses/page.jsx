@@ -1,6 +1,6 @@
 import React from 'react';
 import { keywords } from 'utils/constants';
-import AddExpenses from '../../pages-sections/transaction-details';
+import AddExpenses from '../../pages-sections/add-expenses';
 
 export const metadata = {
   title: 'Add Expenses',
