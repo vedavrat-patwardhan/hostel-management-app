@@ -42,16 +42,24 @@ const StyledTableRow = styled(TableRow)({
   },
 });
 
-const DataListTable = ({ datalist, tableHeading }) => {
+const DataListTable = ({
+  datalist,
+  tableHeading,
+  setSelectedRentId,
+  selectedRentId,
+}) => {
   const { order, orderBy, handleRequestSort } = useMuiTable({
     listData: datalist,
   });
-  const [selectedRentId, setSelectedRentId] = useState('');
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false);
+  const [doc, setDoc] = useState('');
   const [updateData, setUpdateData] = useState({
     paidAmount: '',
     miscellaneous: '',
   });
+
   const ReceivableAmount = id => {
     const document = datalist.find(item => item.idNo.split('-')[1] === id);
 
@@ -90,9 +98,27 @@ const DataListTable = ({ datalist, tableHeading }) => {
     }
   };
 
+  const handleDetailsModalOpen = async id => {
+    try {
+      const response = datalist.find(item => item.idNo === id);
+      if (response) {
+        setDoc(response);
+        setIsDetailsModalOpen(true);
+      } else {
+        console.log('Document with that is not getting');
+      }
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
+
   const handleUpdateModalClose = () => {
     setIsModalOpen(false);
     setSelectedRentId('');
+  };
+
+  const handleDetailsModalClose = () => {
+    setIsDetailsModalOpen(false);
   };
   const handleUpdate = async id => {
     try {
@@ -105,7 +131,15 @@ const DataListTable = ({ datalist, tableHeading }) => {
     }
   };
 
-  const showDetailsHandler = idNo => {};
+  const GenerateMessage = async id => {
+    try {
+      const receivableAmount = ReceivableAmount(id);
+      const message = `Your receivable amount is ${receivableAmount}`;
+      alert(message);
+    } catch (error) {
+      console.log('Error', error);
+    }
+  };
 
   return (
     <div>
@@ -161,10 +195,14 @@ const DataListTable = ({ datalist, tableHeading }) => {
                       </Button>
                     </StyledTableCell>
                     <StyledTableCell align="center" rowSpan={1}>
-                      <Button>Payment Reminder</Button>
+                      <Button
+                        onClick={() => GenerateMessage(data.idNo.split('-')[1])}
+                      >
+                        Generate Message
+                      </Button>
                     </StyledTableCell>
                     <StyledTableCell align="center" rowSpan={1}>
-                      <Button onClick={() => showDetailsHandler(data.idNo)}>
+                      <Button onClick={() => handleDetailsModalOpen(data.idNo)}>
                         Details
                       </Button>
                     </StyledTableCell>
@@ -207,6 +245,33 @@ const DataListTable = ({ datalist, tableHeading }) => {
             Update
           </Button>
         </DialogActions>
+      </Dialog>
+      <Dialog open={isDetailsModalOpen} onClose={handleDetailsModalClose}>
+        <DialogTitle>Resident Details</DialogTitle>
+        {doc && (
+          <>
+            <DialogContentText>Name:{doc.name.split('-')[0]}</DialogContentText>
+            <DialogContentText>Age:{doc.age}</DialogContentText>
+            <DialogContentText>
+              Personal Contact:{doc.personalContactNo}
+            </DialogContentText>
+            <DialogContentText>
+              Emergency Contact:{doc.emergencyContactNo}
+            </DialogContentText>
+            <DialogContentText>Bed No:{doc.bedNo}</DialogContentText>
+            <DialogContentText>Deposit:{doc.deposit}</DialogContentText>
+            <DialogContentText>
+              Advance Deposit:{doc.advanceDeposit}
+            </DialogContentText>
+            <DialogContentText>
+              Miscellaneous:{doc.miscellaneous}
+            </DialogContentText>
+            <DialogContentText>Paid Amount:{doc.paidAmount}</DialogContentText>
+            <DialogContentText>
+              Validation Document No:{doc.validationDocumentNo}
+            </DialogContentText>
+          </>
+        )}
       </Dialog>
     </div>
   );

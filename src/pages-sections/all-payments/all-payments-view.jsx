@@ -2,15 +2,19 @@ import { Container } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { H3 } from '../../components/Typography';
 import DataListTable from './components/Table';
-import { getBedBookingData } from '../../firebase/bookAbed/get-booking';
-import { getRentDetails } from '../../firebase/rent-details/get-rent-details';
-import { getAllotment } from '../../firebase/allotment/get-allotment';
+import useDataList from '../../hooks/useDataList';
 
 const AllPaymentsView = () => {
-  const [bookingData, setBookingData] = useState([]);
-  const [allotmentData, setAllotmentData] = useState([]);
-  const [rentDetailsData, setRentDetailsData] = useState([]);
+  const {
+    allotmentData,
+    bookingData,
+    rentDetailsData,
+    fetchBookingData,
+    fetchAllotmentData,
+    fetchRentDetailsData,
+  } = useDataList();
   const [dataList, setDataList] = useState([]);
+  const [selectedRentId, setSelectedRentId] = useState('');
   const tableHeading = [
     {
       id: '1',
@@ -85,49 +89,10 @@ const AllPaymentsView = () => {
   ];
 
   useEffect(() => {
-    const fetchBookingData = async () => {
-      try {
-        const response = await getBedBookingData();
-        if (response.status === 200) {
-          setBookingData(response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching booking data:', error);
-      }
-    };
-
     fetchBookingData();
-  }, []);
-
-  useEffect(() => {
-    const fetchAllotmentData = async () => {
-      try {
-        const response = await getAllotment();
-        if (response.status === 200) {
-          setAllotmentData(response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching allotment data:', error);
-      }
-    };
-
     fetchAllotmentData();
-  }, []);
-
-  useEffect(() => {
-    const fetchRentDetailsData = async () => {
-      try {
-        const response = await getRentDetails();
-        if (response.status === 200) {
-          setRentDetailsData(response.data);
-        }
-      } catch (error) {
-        console.error('Error fetching rent details data:', error);
-      }
-    };
-
     fetchRentDetailsData();
-  }, []);
+  }, [selectedRentId]);
 
   useEffect(() => {
     if (
@@ -142,14 +107,19 @@ const AllPaymentsView = () => {
       );
       setDataList(merged);
     }
-  }, [bookingData, allotmentData, rentDetailsData]);
+  }, [bookingData, allotmentData, rentDetailsData, selectedRentId]);
 
   return (
     <Container sx={{ mt: 12, position: 'relative' }}>
       <H3 align="center" mb={2}>
         All Payments
       </H3>
-      <DataListTable datalist={dataList} tableHeading={tableHeading} />
+      <DataListTable
+        datalist={dataList}
+        tableHeading={tableHeading}
+        selectedRentId={selectedRentId}
+        setSelectedRentId={setSelectedRentId}
+      />
     </Container>
   );
 };
