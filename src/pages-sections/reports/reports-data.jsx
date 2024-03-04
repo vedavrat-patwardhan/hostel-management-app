@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Container } from '@mui/material';
+import { Button, Container, TextField } from '@mui/material';
 import DataListTable from './components/Table';
 import { getExpense } from '../../firebase/expenses/get-expenses';
 
-const DailyReportsData = () => {
+const ReportsData = () => {
   const [dataList, setDataList] = useState([]);
+  const [viewOption, setViewOption] = useState('daily-reports');
 
   const tableHeading = [
     {
@@ -80,11 +81,42 @@ const DailyReportsData = () => {
     ExpenseData();
   }, []);
 
-  console.log(dataList, 'This is datalist');
+  const toggleViewOption = option => {
+    setViewOption(option);
+  };
   return (
     <Container>
-      <DataListTable datalist={dataList} tableHeading={tableHeading} />
+      <Button onClick={() => toggleViewOption('daily-reports')}>
+        Daily Reports
+      </Button>
+      <Button onClick={() => toggleViewOption('monthly-reports')}>
+        Monthly Reports
+      </Button>
+      <Button onClick={() => toggleViewOption('yearly-reports')}>
+        Yearly Reports
+      </Button>
+      {viewOption === 'daily-reports' && (
+        <DataListTable
+          datalist={dataList}
+          tableHeading={tableHeading}
+          viewOption="daily-reports"
+        />
+      )}
+      {viewOption === 'monthly-reports' && (
+        <DataListTable
+          datalist={dataList}
+          tableHeading={tableHeading}
+          viewOption="monthly-reports"
+        />
+      )}
+      {viewOption === 'yearly-reports' && (
+        <DataListTable
+          datalist={dataList}
+          tableHeading={tableHeading}
+          viewOption="yearly-reports"
+        />
+      )}
     </Container>
   );
 };
-export default DailyReportsData;
+export default ReportsData;

@@ -1,9 +1,9 @@
 import React from 'react';
 import { keywords } from 'utils/constants';
-import DailyReports from '../../pages-sections/daily-reports';
+import ReportsPage from '../../pages-sections/reports';
 
 export const metadata = {
-  title: 'Daily Reports',
+  title: 'Reports Data',
   description: `Hostel Management platform for hostel owners.`,
   authors: [
     {
@@ -15,6 +15,6 @@ export const metadata = {
   keywords,
 };
 
-const IndexPage = () => <DailyReports />;
+const IndexPage = () => <ReportsPage />;
 
 export default IndexPage;

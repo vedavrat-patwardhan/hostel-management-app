@@ -3,15 +3,15 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import Header from '../../components/header';
-import LeftWithoutPayingView from './left-without-paying-view';
+import ReportsDataView from './reports-data-view';
 
-const LeftWithoutPaying = () => (
+const ReportsPage = () => (
   <Box bgcolor="background.paper" minHeight="100vh">
     <Header />
     <Box maxWidth={1280} margin="auto">
-      <LeftWithoutPayingView />
+      <ReportsDataView />
     </Box>
   </Box>
 );
 
-export default LeftWithoutPaying;
+export default ReportsPage;

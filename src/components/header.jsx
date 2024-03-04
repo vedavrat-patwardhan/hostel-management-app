@@ -163,44 +163,10 @@ const Header = () => {
                 color="grey.600"
                 p="0.25rem 1.25rem"
                 fontWeight={currentPath.includes('residents') ? 700 : 400}
-                onClick={handleResidentsDropdown}
+                onClick={() => router.push('/residents')}
               >
                 Residents
               </Typography>
-              {openResidentsDropdown && (
-                <FlexBox
-                  flexDirection="column"
-                  position="absolute"
-                  top="100%"
-                  left="200px"
-                  backgroundColor="white"
-                  boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
-                  borderRadius="4px"
-                  zIndex={100}
-                >
-                  <Typography
-                    className="link"
-                    p="0.25rem 1.25rem"
-                    onClick={() => router.push('/live-residents')}
-                  >
-                    Live Residents
-                  </Typography>
-                  <Typography
-                    className="link"
-                    p="0.25rem 1.25rem"
-                    onClick={() => router.push('/left-residents')}
-                  >
-                    Left Residents
-                  </Typography>
-                  <Typography
-                    className="link"
-                    p="0.25rem 1.25rem"
-                    onClick={() => router.push('/left-without-paying')}
-                  >
-                    Left Without Paying
-                  </Typography>
-                </FlexBox>
-              )}
               <Typography
                 className="link"
                 color="grey.600"
@@ -215,44 +181,10 @@ const Header = () => {
                 color="grey.600"
                 p="0.25rem 1.25rem"
                 fontWeight={currentPath.includes('reports') ? 700 : 400}
-                onClick={handleReportsDropdown}
+                onClick={() => router.push('/reports')}
               >
                 Reports
               </Typography>
-              {openReportsDropdown && (
-                <FlexBox
-                  flexDirection="column"
-                  position="absolute"
-                  top="100%"
-                  left="430px"
-                  backgroundColor="white"
-                  boxShadow="0px 4px 8px rgba(0, 0, 0, 0.1)"
-                  borderRadius="4px"
-                  zIndex={100}
-                >
-                  <Typography
-                    className="link"
-                    p="0.25rem 1.25rem"
-                    onClick={() => router.push('/daily-reports')}
-                  >
-                    Daily Reports
-                  </Typography>
-                  <Typography
-                    className="link"
-                    p="0.25rem 1.25rem"
-                    onClick={() => router.push('/monthly-reports')}
-                  >
-                    Monthly Reports
-                  </Typography>
-                  <Typography
-                    className="link"
-                    p="0.25rem 1.25rem"
-                    onClick={() => router.push('/yearly-reports')}
-                  >
-                    Yearly Reports
-                  </Typography>
-                </FlexBox>
-              )}
             </FlexBox>
             {/* mobile menu */}
             {downSM && (

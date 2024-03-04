@@ -6,7 +6,7 @@ import styled from '@mui/material/styles/styled';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useMuiTable from 'hooks/useMuiTable'; // CUSTOM ICON COMPONENT
 import PropTypes from 'prop-types';
 
@@ -46,18 +46,24 @@ const SearchContainer = styled('div')({
   },
 });
 
-const DataListTable = ({ datalist, tableHeading }) => {
+const DataListTable = ({ datalist, tableHeading, viewOption }) => {
   const { order, orderBy, handleRequestSort } = useMuiTable({
     listData: datalist,
   });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false);
   const [requiredDoc, setRequiredDoc] = useState(null);
   const [searchItem, setSearchItem] = useState('');
 
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+
+  const handleTransactionModalClose = () => {
+    setIsTransactionModalOpen(false);
+  };
+
   const handleModalOpen = idNo => {
     setIsModalOpen(true);
     const document = datalist.find(item => item.idNo === idNo);
@@ -69,7 +75,18 @@ const DataListTable = ({ datalist, tableHeading }) => {
     }
   };
 
+  const handleTransactionModalOpen = idNo => {
+    setIsTransactionModalOpen(true);
+    const document = datalist.find(item => item.idNo === idNo);
+    if (document) {
+      setRequiredDoc(document);
+    } else {
+      console.log('Error in getting document');
+    }
+  };
+
   console.log(datalist, 'Datalist is here');
+
   const filteredData = datalist.filter(item =>
     item.name.toLowerCase().includes(searchItem.toLowerCase()),
   );
@@ -111,9 +128,20 @@ const DataListTable = ({ datalist, tableHeading }) => {
                     </StyledTableCell>
                     <StyledTableCell align="center" rowSpan={1}>
                       <Button onClick={() => handleModalOpen(data.idNo)}>
-                        Show Details
+                        Resident Details
                       </Button>
                     </StyledTableCell>
+
+                    {(viewOption === 'left' ||
+                      viewOption === 'leftWithoutPaying') && (
+                      <StyledTableCell align="center" rowSpan={1}>
+                        <Button
+                          onClick={() => handleTransactionModalOpen(data.idNo)}
+                        >
+                          Transaction Details
+                        </Button>
+                      </StyledTableCell>
+                    )}
                   </StyledTableRow>
                 ))
               ) : (
@@ -156,6 +184,29 @@ const DataListTable = ({ datalist, tableHeading }) => {
           </>
         )}
       </Dialog>
+      <Dialog
+        open={isTransactionModalOpen}
+        onClose={handleTransactionModalClose}
+      >
+        <DialogTitle>Resident Details</DialogTitle>
+        {requiredDoc && (
+          <>
+            <DialogContentText>Deposit:{requiredDoc.deposit}</DialogContentText>
+            <DialogContentText>
+              Paid Amount:{requiredDoc.paidAmount}
+            </DialogContentText>
+            <DialogContentText>
+              Advance Deposit:{requiredDoc.advanceDeposit}
+            </DialogContentText>
+            <DialogContentText>
+              Monthly Rent:{requiredDoc.monthlyRent}
+            </DialogContentText>
+            <DialogContentText>
+              Miscellaneous:{requiredDoc.miscellaneous}
+            </DialogContentText>
+          </>
+        )}
+      </Dialog>
     </>
   );
 };
@@ -175,4 +226,5 @@ DataListTable.propTypes = {
   tableHeading: PropTypes.arrayOf(
     PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.bool])),
   ).isRequired,
+  viewOption: PropTypes.string.isRequired,
 };

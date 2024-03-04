@@ -1,15 +1,15 @@
 import { Container } from '@mui/material';
 import React from 'react';
 import { H3 } from '../../components/Typography';
-import LeftResidentsData from './left-residents-data';
+import ReportsData from './reports-data';
 
-const LeftResidentsView = () => (
+const ReportsDataView = () => (
   <Container sx={{ mt: 12, position: 'relative' }}>
     <H3 align="center" mb={2}>
-      Left Residents
+      Reports Data
     </H3>
-    <LeftResidentsData />
+    <ReportsData />
   </Container>
 );
 
-export default LeftResidentsView;
+export default ReportsDataView;
