@@ -1,10 +1,10 @@
 import React from 'react';
 import { keywords } from 'utils/constants';
-import AddExpenses from '../../pages-sections/add-expenses';
+import ClosureData from '../../pages-sections/closure';
 
 export const metadata = {
-  title: 'Add Expenses',
-  description: `Form to add transactions in hostel.`,
+  title: 'Closure Details',
+  description: `Hostel Management platform for hostel owners.`,
   authors: [
     {
       name: 'Vedavrat Patwardhan',
@@ -15,5 +15,6 @@ export const metadata = {
   keywords,
 };
 
-const IndexPage = () => <AddExpenses />;
+const IndexPage = () => <ClosureData />;
+
 export default IndexPage;

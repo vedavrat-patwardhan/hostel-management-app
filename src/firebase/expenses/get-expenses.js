@@ -13,9 +13,9 @@ export const getExpense = async () => {
                 data: doc.data(),
             });
         });
-
-        return { status: 200, data: documents }
+        console.log(documents, 'This is documents');
+        return { status: 200, data: documents };
     } catch (error) {
-        return { status: 404, message: error }
+        return { status: 404, message: error };
     }
-
+};
