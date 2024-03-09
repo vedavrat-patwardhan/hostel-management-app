@@ -8,7 +8,6 @@ import TextField from '@mui/material/TextField';
 import { Formik } from 'formik';
 import * as yup from 'yup'; // GLOBAL CUSTOM COMPONENTS
 import PropTypes from 'prop-types';
-import { MenuItem } from '@mui/material';
 
 const VALIDATION_SCHEMA = yup.object().shape({
   eBill: yup.number().required('Electricity bill is required'),

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Container, TextField } from '@mui/material';
+import { Button, Container } from '@mui/material';
 import DataListTable from './components/Table';
-import { getExpense } from '../../firebase/expenses/get-expenses';
+import getExpense from '../../firebase/expenses/get-expenses';
 
 const ReportsData = () => {
   const [dataList, setDataList] = useState([]);

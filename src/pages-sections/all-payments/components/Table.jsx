@@ -6,7 +6,7 @@ import styled from '@mui/material/styles/styled';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useMuiTable from 'hooks/useMuiTable'; // CUSTOM ICON COMPONENT
 import PropTypes from 'prop-types';
 
@@ -22,7 +22,7 @@ import {
 } from '@mui/material';
 import TableHeader from '../../home/components/table-head';
 import { getRentDetailsById } from '../../../firebase/rent-details/rent-details-by-id';
-import { getRentDetailsByIdAndUpdate } from '../../../firebase/rent-details/update-rent-details';
+import getRentDetailsByIdAndUpdate from '../../../firebase/rent-details/update-rent-details';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   fontSize: 13,

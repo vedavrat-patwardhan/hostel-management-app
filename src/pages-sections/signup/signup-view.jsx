@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import SignupForm from './signup-form';
 import { H3 } from '../../components/Typography';
-import { signUp } from '../../firebase/auth/signup';
+import signUp from '../../firebase/auth/signup';
 
 const SignupView = () => {
   const router = useRouter();

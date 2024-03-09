@@ -1,11 +1,11 @@
-import { components } from './components';
+import components from './components';
 import { typography } from './typography';
 import { primary, themeColors } from './theme-colors';
-/********************************************
+/** ******************************************
  * You can delete themeOptions.ts file and
  * rename this file to `themeOptions.ts`
  * Follow the documentation for more details
- *********************************************/
+ ******************************************** */
 
 const THEMES = {
   GIFT: 'GIFT',
@@ -60,7 +60,7 @@ const themesOptionList = {
 
 const themeOptions = () => {
   // YOU CAN SET ANOTHER THEME HERE E.G. [THEMES.GROCERY] OR [THEMES.FURNITURE] ETC.
-  let themeOption = themesOptionList[THEMES.DEFAULT];
+  const themeOption = themesOptionList[THEMES.DEFAULT];
   return themeOption;
 };
 

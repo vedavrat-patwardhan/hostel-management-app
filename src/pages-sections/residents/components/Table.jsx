@@ -6,7 +6,7 @@ import styled from '@mui/material/styles/styled';
 import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import useMuiTable from 'hooks/useMuiTable'; // CUSTOM ICON COMPONENT
 import PropTypes from 'prop-types';
 
@@ -95,10 +95,9 @@ const DataListTable = ({ datalist, tableHeading, viewOption }) => {
       <Scrollbar>
         <SearchContainer>
           <form>
-            <label htmlFor="search">Search</label>
+            <span>Search</span>
             <input
               type="text"
-              id="search"
               name="search"
               value={searchItem}
               onChange={e => setSearchItem(e.target.value)}

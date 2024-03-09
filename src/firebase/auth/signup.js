@@ -3,7 +3,7 @@ import firebaseApp from '../config';
 
 const auth = getAuth(firebaseApp);
 
-export const signUp = async values => {
+const signUp = async values => {
   const { email, password } = values;
   try {
     const response = await createUserWithEmailAndPassword(
@@ -16,3 +16,5 @@ export const signUp = async values => {
     return { status: 404, message: error };
   }
 };
+
+export default signUp;

@@ -1,5 +1,4 @@
 import React from 'react';
-import IndexPageView from 'pages-sections/home';
 import { keywords } from 'utils/constants';
 import AddAllotment from '../../pages-sections/add-allotment';
 

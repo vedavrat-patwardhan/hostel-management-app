@@ -4,7 +4,7 @@ import { H3 } from 'components/Typography'; // Local CUSTOM COMPONENT
 import { Container } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import ExpensesForm from './add-expenses-form';
-import { addExpense } from '../../firebase/expenses/add-expenses';
+import addExpense from '../../firebase/expenses/add-expenses';
 
 const AddExpensesView = () => {
   const router = useRouter();

@@ -88,6 +88,26 @@ const AllPaymentsView = () => {
     },
   ];
 
+  const mergeDocuments = (
+    mergingBookingData,
+    mergingAllotmentData,
+    mergingRentDetailsData,
+  ) =>
+    mergingBookingData.map(booking => {
+      const allotment = mergingAllotmentData.find(
+        a => a.data.name.split('-')[1] === booking.id,
+      );
+      const rentDetails = mergingRentDetailsData.find(
+        r => r.data.idNo.split('-')[1] === booking.id,
+      );
+
+      return {
+        ...booking?.data,
+        ...allotment?.data,
+        ...rentDetails?.data,
+      };
+    });
+
   useEffect(() => {
     fetchBookingData();
     fetchAllotmentData();
@@ -124,19 +144,4 @@ const AllPaymentsView = () => {
   );
 };
 
-const mergeDocuments = (bookingData, allotmentData, rentDetailsData) =>
-  bookingData.map(booking => {
-    const allotment = allotmentData.find(
-      a => a.data.name.split('-')[1] === booking.id,
-    );
-    const rentDetails = rentDetailsData.find(
-      r => r.data.idNo.split('-')[1] === booking.id,
-    );
-
-    return {
-      ...booking?.data,
-      ...allotment?.data,
-      ...rentDetails?.data,
-    };
-  });
 export default AllPaymentsView;

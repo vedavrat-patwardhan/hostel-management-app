@@ -13,7 +13,7 @@ import PropTypes from 'prop-types';
 import Scrollbar from 'components/Scrollbar';
 import { Button } from '@mui/material';
 import TableHeader from '../../home/components/table-head';
-import { updateAllotmentById } from '../../../firebase/allotment/update-allotment-by-id';
+import updateAllotmentById from '../../../firebase/allotment/update-allotment-by-id';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   fontSize: 13,

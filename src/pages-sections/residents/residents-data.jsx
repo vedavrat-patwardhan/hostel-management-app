@@ -70,6 +70,26 @@ const ResidentsData = () => {
     },
   ];
 
+  const mergeDocuments = (
+    mergingBookingData,
+    filteredData,
+    mergingRentDetailsData,
+  ) =>
+    filteredData.map(filter => {
+      const booking = mergingBookingData.find(
+        a => a.id === filter.data.name.split('-')[1],
+      );
+      const rentDetails = mergingRentDetailsData.find(
+        r => r.data.idNo.split('-')[1] === filter.data.name.split('-')[1],
+      );
+
+      return {
+        ...booking?.data,
+        ...filter?.data,
+        ...rentDetails?.data,
+      };
+    });
+
   useEffect(() => {
     fetchBookingData();
     fetchAllotmentData();
@@ -182,20 +202,4 @@ const ResidentsData = () => {
     </Container>
   );
 };
-const mergeDocuments = (bookingData, filteredData, rentDetailsData) =>
-  filteredData.map(filter => {
-    const booking = bookingData.find(
-      a => a.id === filter.data.name.split('-')[1],
-    );
-    const rentDetails = rentDetailsData.find(
-      r => r.data.idNo.split('-')[1] === filter.data.name.split('-')[1],
-    );
-
-    return {
-      ...booking?.data,
-      ...filter?.data,
-      ...rentDetails?.data,
-    };
-  });
-
 export default ResidentsData;

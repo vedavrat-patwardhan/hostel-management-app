@@ -3,8 +3,8 @@ import { Container } from '@mui/material';
 import { useRouter } from 'next/navigation';
 import AddAllotmentForm from './add-allotment-form';
 import { H3 } from '../../components/Typography';
-import { getBedBookingData } from '../../firebase/bookAbed/get-booking';
-import { addAllotment } from '../../firebase/allotment/add-allotment';
+import getBedBookingData from '../../firebase/bookAbed/get-booking';
+import addAllotment from '../../firebase/allotment/add-allotment';
 
 const AddAllotmentView = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const AddAllotmentView = () => {
         if (response.status === 200) {
           setResidents(response.data);
         } else {
-          console.log('Error', error);
+          console.log('Error', response.message);
         }
       } catch (error) {
         console.log('Error', error);

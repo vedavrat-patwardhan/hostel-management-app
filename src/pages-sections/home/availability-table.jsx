@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import { H2 } from 'components/Typography';
 import DataListTable from './components/table';
 import { bedData } from '../../utils/constants';
-import { getAllotment } from '../../firebase/allotment/get-allotment';
+import getAllotment from '../../firebase/allotment/get-allotment';
 
 const AvailabilityTable = () => {
   const [allotmentData, setAllotmentData] = useState([]);

@@ -2,7 +2,7 @@ import { dark, grey, primary, secondary, success } from './theme-colors';
 import { typography } from './typography'; // ========================================================
 
 // =========================================================
-export const components = {
+const components = {
   MuiCssBaseline: {
     styleOverrides: {
       '*': {
@@ -158,3 +158,5 @@ export const components = {
     },
   },
 };
+
+export default components;

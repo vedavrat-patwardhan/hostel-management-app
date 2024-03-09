@@ -1,6 +1,7 @@
-import { components } from './components';
+import components from './components';
 import { typography } from './typography';
 import { blue, marron, paste, primary, themeColors } from './theme-colors';
+
 const THEMES = {
   GIFT: 'GIFT',
   HEALTH: 'HEALTH',

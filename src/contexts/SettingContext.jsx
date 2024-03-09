@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useEffect, useState } from 'react'; // ============================================================
+import { createContext, useMemo, useState } from 'react'; // ============================================================
 
 // ============================================================
 // SET "rtl" OR "ltr" HERE
@@ -10,7 +10,7 @@ const initialSettings = {
 };
 export const SettingsContext = createContext({
   settings: initialSettings,
-  updateSettings: arg => {},
+  updateSettings: () => {},
 });
 
 const SettingsProvider = ({ children }) => {
@@ -21,19 +21,16 @@ const SettingsProvider = ({ children }) => {
     window.localStorage.setItem('settings', JSON.stringify(updatedSetting));
   };
 
-  useEffect(() => {
-    if (!window) return;
-    const getItem = window.localStorage.getItem('settings');
-    if (getItem) setSettings(JSON.parse(getItem));
-    else setSettings(initialSettings);
-  }, []);
+  const contextValue = useMemo(
+    () => ({
+      settings,
+      updateSettings,
+    }),
+    [settings, updateSettings],
+  );
+
   return (
-    <SettingsContext.Provider
-      value={{
-        settings,
-        updateSettings,
-      }}
-    >
+    <SettingsContext.Provider value={contextValue}>
       {children}
     </SettingsContext.Provider>
   );

@@ -52,21 +52,9 @@ const HeaderWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-const DropdownWrapper = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  top: '100%',
-  left: 0,
-  backgroundColor: 'white',
-  boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
-  borderRadius: '4px',
-  zIndex: 100,
-}));
-
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [openTransactionDropdown, setOpenTransactionDropdown] = useState(false);
-  const [openReportsDropdown, setOpenReportsDropdown] = useState(false);
-  const [openResidentsDropdown, setOpenResidentsDropdown] = useState(false);
 
   const downSM = useMediaQuery(theme => theme.breakpoints.down('sm'));
   const router = useRouter();
@@ -75,21 +63,8 @@ const Header = () => {
 
   const handleTransactionDropdown = () => {
     setOpenTransactionDropdown(prev => !prev);
-    setOpenReportsDropdown(false);
-    setOpenResidentsDropdown(false);
   };
 
-  const handleReportsDropdown = () => {
-    setOpenReportsDropdown(prev => !prev);
-    setOpenTransactionDropdown(false);
-    setOpenResidentsDropdown(false);
-  };
-
-  const handleResidentsDropdown = () => {
-    setOpenResidentsDropdown(prev => !prev);
-    setOpenReportsDropdown(false);
-    setOpenTransactionDropdown(false);
-  };
   return (
     <HeaderWrapper>
       <div

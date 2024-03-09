@@ -74,7 +74,7 @@ const LoginForm = props => {
               </Grid>
               <Grid item sm={6} xs={12}>
                 <Typography variant="body2">
-                  Don't have an account?{' '}
+                  {`Don't`} have an account?{' '}
                   <Link href="/signup">Go to signup</Link>
                 </Typography>
               </Grid>

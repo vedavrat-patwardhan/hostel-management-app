@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { H3 } from '../../components/Typography';
 import RentDetailsForm from './rent-details-form';
-import { addRent } from '../../firebase/rent-details/add-rent';
-import { getBedBookingData } from '../../firebase/bookAbed/get-booking';
+import addRent from '../../firebase/rent-details/add-rent';
+import getBedBookingData from '../../firebase/bookAbed/get-booking';
 
 const RentDetailsView = () => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const RentDetailsView = () => {
         if (response.status === 200) {
           setResidents(response.data);
         } else {
-          console.log('Error', error);
+          console.log('Error', response.message);
         }
       } catch (error) {
         console.log('Error', error);

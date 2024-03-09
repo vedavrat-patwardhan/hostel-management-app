@@ -20,6 +20,7 @@ const useScroller = ref => {
   useEffect(() => {
     if (!window) return;
     window.addEventListener('scroll', scroller);
+    // eslint-disable-next-line consistent-return
     return () => window.removeEventListener('scroll', scroller);
   }, [scroller]);
   return {
